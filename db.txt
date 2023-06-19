@@ -1,0 +1,49 @@
+CREATE TABLE users(
+    idusers INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    type VARCHAR(255),
+    image VARCHAR(255),
+    token VARCHAR(255),
+    bio TEXT
+);
+
+CREATE TABLE categories (
+    idcategories INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    description TEXT
+);
+
+CREATE TABLE events(
+    idevents INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    description TEXT,
+    date DATE,
+    time TIME,
+    location VARCHAR(255),
+    price FLOAT,
+    images VARCHAR(255),
+    users_idusers INT(11) UNSIGNED,
+    categories_idcategories INT(11) UNSIGNED,
+    FOREIGN KEY (users_idusers) REFERENCES users(idusers),
+    FOREIGN KEY (categories_idcategories) REFERENCES categories(idcategories)
+);
+
+CREATE TABLE registrations (
+	idregistrations INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    status VARCHAR(255),
+    events_users_idusers INT(11) UNSIGNED,
+    users_idusers INT(11) UNSIGNED,
+    FOREIGN KEY (events_users_idusers) REFERENCES events(users_idusers),
+    FOREIGN KEY (users_idusers) REFERENCES users(idusers)
+);
+
+CREATE TABLE reviews (
+	idreviews INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	rating INT,
+    review TEXT, 
+    events_users_idusers INT(11) UNSIGNED,
+    users_idusers INT(11) UNSIGNED,
+    FOREIGN KEY (events_users_idusers) REFERENCES events(users_idusers),
+    FOREIGN KEY (users_idusers) REFERENCES users(idusers)
+);
