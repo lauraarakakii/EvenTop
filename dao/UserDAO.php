@@ -251,7 +251,18 @@ class UserDAO implements UserDAOInterface
 
     public function changePassword(User $user)
     {
+        $stmt = $this->conn->prepare("UPDATE users SET
+            password = :password
+            WHERE idusers = :idusers
+        ");
 
+        $stmt->bindParam(":password", $user->password);
+        $stmt->bindParam(":idusers", $user->idusers);
+
+        $stmt->execute();
+
+        // Redirecionar e apresentar a mensagem de sucesso
+        $this->message->setMessage("Senha alterada com sucesso!", "success", "editprofile.php");
     }
 
     public function destroyToken() {

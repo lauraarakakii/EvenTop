@@ -35,7 +35,7 @@ $userData = $userDAO->verifyToken(false);
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--CSS-->
-    <link rel="stylesheet" href="<?= $BASE_URL ?>css/style.css" />
+    <link rel="stylesheet" href="<?= $BASE_URL ?>css/styles.css" />
 
 </head>
 

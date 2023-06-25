@@ -15,7 +15,7 @@
     <div id="footer-links-container">
         <ul>
             <li>
-                <a href="#">Adicionar Evento</a>
+                <a href="<?= $BASE_URL ?>newevent.php">Adicionar Evento</a>
             </li>
             <li>
                 <a href="#">Avaliar Evento</a>
