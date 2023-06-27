@@ -75,42 +75,6 @@ $userData = $userDAO->verifyToken(true);
     </div>
 </div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script>
-  var mymap = L.map('mapid').setView([0, 0], 2); // Initial coordinates and zoom
-
-  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoiYXJha2FraWxhdXJhIiwiYSI6ImNsamVyb2NpYjI1cDEzZm13NTN2dXo0ZjYifQ.7MfHAkgJkxf2jY2UJBOdmA' // Substitua pelo seu token
-}).addTo(mymap);
-
-  document.getElementById('location').addEventListener('change', function(event) {
-    event.preventDefault();
-
-    var location = document.getElementById('location').value;
-
-    if (location) {
-      fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(location)}.json?access_token=pk.eyJ1IjoiYXJha2FraWxhdXJhIiwiYSI6ImNsamVyb2NpYjI1cDEzZm13NTN2dXo0ZjYifQ.7MfHAkgJkxf2jY2UJBOdmA`) // Substitua pelo seu token
-        .then(response => response.json())
-        .then(data => {
-          const [longitude, latitude] = data.features[0].center;
-
-          // Remove any existing marker
-          if (mymap.hasLayer(marker)) {
-            mymap.removeLayer(marker);
-          }
-
-          // Add a new marker to the map at the new location and zoom in
-          var marker = L.marker([latitude, longitude]).addTo(mymap);
-          mymap.setView([latitude, longitude], 13);
-        });
-    }
-  });
-</script>
-
 
 <?php
 require_once("templates/footer.php");

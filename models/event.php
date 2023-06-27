@@ -34,5 +34,7 @@
         public function update(Event $event);
         public function destroy($idevents);
 
+        public function getRegistrations($idevents);
+
 
     }

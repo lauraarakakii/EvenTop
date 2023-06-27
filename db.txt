@@ -30,12 +30,12 @@ CREATE TABLE events(
 );
 
 CREATE TABLE registrations (
-	idregistrations INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    status VARCHAR(255),
-    events_users_idusers INT(11) UNSIGNED,
+    idregistrations INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    status VARCHAR(45),
+    events_idevents INT(11) UNSIGNED,
     users_idusers INT(11) UNSIGNED,
-    FOREIGN KEY (events_users_idusers) REFERENCES events(users_idusers),
-    FOREIGN KEY (users_idusers) REFERENCES users(idusers)
+    FOREIGN KEY (users_idusers) REFERENCES users(idusers),
+    FOREIGN KEY (events_idevents) REFERENCES events(idevents)
 );
 
 CREATE TABLE reviews (

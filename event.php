@@ -1,9 +1,11 @@
 <?php
 require_once("templates/header.php");
-
 require_once("models/event.php");
 require_once("dao/EventDAO.php");
 require_once("dao/ReviewDAO.php");
+require_once("dao/RegistrationDAO.php");
+
+$registrationDAO = new RegistrationDAO($conn, $BASE_URL);
 
 $idevents = filter_input(INPUT_GET, "idevents");
 
@@ -50,7 +52,12 @@ if (!empty($userData)) {
 //Resgatar as reviews do evento
 $eventReviews = $reviewDAO->getEventsReview($event->idevents);
 
+//Verificar se o usuário já está inscrito no evento
+$isRegistered = false;
 
+if (!empty($userData)) {
+    $isRegistered = $registrationDAO->isRegistered($event->idevents, $userData->idusers);
+}
 
 ?>
 
@@ -87,12 +94,23 @@ $eventReviews = $reviewDAO->getEventsReview($event->idevents);
                 </span>
             </p>
             <p>
-                <?= $event->description ?>
+            <h3><b>Conheça o evento: </b></h3>
+            <?= $event->description ?>
             </p>
+
+            <?php if (!empty($userData) && !$userOwnsEvent && !$isRegistered): ?>
+                <form action="<?= $BASE_URL ?>registration_process.php" method="POST" id="registration-form">
+                    <input type="hidden" name="type" value="create">
+                    <input type="hidden" name="events_idevents" value="<?= $event->idevents ?>">
+                    <button type="submit" class="card-btn btn" style="margin-top: 33%;">Inscreva-se!</button>
+                </form>
+            <?php endif; ?>
+
         </div>
         <div class="col-md-4">
             <div class="event-image-container"
                 style="background-image: url('<?= $BASE_URL ?>/img/event/<?= $event->images ?>')"></div>
+
         </div>
         <div class="offset-md-1 col-md-10" id="reviews-container">
             <h3 id="reviews-title">Avaliações:</h3>
@@ -127,6 +145,7 @@ $eventReviews = $reviewDAO->getEventsReview($event->idevents);
                         </div>
                         <br>
                         <input type="submit" value="Enviar comentário" class="btn card-btn">
+
                     </form>
                 </div>
             <?php endif; ?>
@@ -137,7 +156,9 @@ $eventReviews = $reviewDAO->getEventsReview($event->idevents);
             <?php if (count($eventReviews) === 0): ?>
                 <p class="empty-list">Não há comentários sobre esse evento ainda</p>
             <?php endif; ?>
+
         </div>
+
     </div>
 </div>
 

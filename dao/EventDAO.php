@@ -1,9 +1,9 @@
 <?php
 require_once("models/event.php");
 require_once("models/message.php");
-
-//REview DAO
 require_once("dao/ReviewDAO.php");
+require_once("dao/RegistrationDAO.php");
+
 
 class EventDAO implements EventDAOInterface
 {
@@ -46,6 +46,19 @@ class EventDAO implements EventDAOInterface
 
         return $event;
     }
+
+    public function getRegistrations($eventId) {
+
+        $sql = "SELECT * FROM registration WHERE events_idevents = :eventId";
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":eventId", $eventId);
+    
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+    
 
     public function findAll()
     {
