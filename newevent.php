@@ -21,10 +21,12 @@ $userData = $userDAO->verifyToken(true);
                 <label for="title">E qual o nome do evento?</label>
                 <input type="text" id="title" name="title" class="form-control" placeholder="Digite o nome do evento">
             </div>
+            <br>
             <div class="form-group">
                 <label for="image">Imagem do evento, seja criativo</label>
                 <input type="file" class="form-control-file" name="image" id="image">
             </div>
+            <br>
             <div class="form-group">
                 <label for="date">Qual será o dia do evento?</label>
                 <input type="date" class="form-control" name="date" id="date">
@@ -38,20 +40,6 @@ $userData = $userDAO->verifyToken(true);
                 <input type="text" class="form-control" name="location" id="location"
                     placeholder="Digite a localização do evento">
             </div>
-            <!--<div class="form-group">
-                <label for="categories_idcategories">Qual a categoria do evento?</label>
-                <select class="form-control" name="categories_idcategories" id="categories_idcategories">
-                    <option value="">Selecione a categoria</option>
-                    <option value="festas">Festas</option>
-                    <option value="bares">Bares</option>
-                    <option value="shows">Shows</option>
-                    <option value="musica_ao_vivo">Música ao Vivo</option>
-                    <option value="teatros">Teatros</option>
-                    <option value="cursos">Cursos</option>
-                    <option value="feiras">Feiras</option>
-                </select>
-            </div>-->
-
             <div class="form-group">
                 <label for="categories_idcategories">Qual a categoria do evento?</label>
                 <select class="form-control" name="categories_idcategories" id="categories_idcategories">
@@ -86,6 +74,43 @@ $userData = $userDAO->verifyToken(true);
         </form>
     </div>
 </div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  var mymap = L.map('mapid').setView([0, 0], 2); // Initial coordinates and zoom
+
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoiYXJha2FraWxhdXJhIiwiYSI6ImNsamVyb2NpYjI1cDEzZm13NTN2dXo0ZjYifQ.7MfHAkgJkxf2jY2UJBOdmA' // Substitua pelo seu token
+}).addTo(mymap);
+
+  document.getElementById('location').addEventListener('change', function(event) {
+    event.preventDefault();
+
+    var location = document.getElementById('location').value;
+
+    if (location) {
+      fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(location)}.json?access_token=pk.eyJ1IjoiYXJha2FraWxhdXJhIiwiYSI6ImNsamVyb2NpYjI1cDEzZm13NTN2dXo0ZjYifQ.7MfHAkgJkxf2jY2UJBOdmA`) // Substitua pelo seu token
+        .then(response => response.json())
+        .then(data => {
+          const [longitude, latitude] = data.features[0].center;
+
+          // Remove any existing marker
+          if (mymap.hasLayer(marker)) {
+            mymap.removeLayer(marker);
+          }
+
+          // Add a new marker to the map at the new location and zoom in
+          var marker = L.marker([latitude, longitude]).addTo(mymap);
+          mymap.setView([latitude, longitude], 13);
+        });
+    }
+  });
+</script>
+
 
 <?php
 require_once("templates/footer.php");

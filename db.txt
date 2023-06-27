@@ -39,11 +39,12 @@ CREATE TABLE registrations (
 );
 
 CREATE TABLE reviews (
-	idreviews INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	rating INT,
-    review TEXT, 
-    events_users_idusers INT(11) UNSIGNED,
+    idreviews INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    rating INT,
+    review TEXT,
+    events_idevents INT(11) UNSIGNED,
     users_idusers INT(11) UNSIGNED,
-    FOREIGN KEY (events_users_idusers) REFERENCES events(users_idusers),
+    FOREIGN KEY (events_idevents) REFERENCES events(idevents),
     FOREIGN KEY (users_idusers) REFERENCES users(idusers)
 );
+

@@ -12,6 +12,8 @@
         public $images;
         public $users_idusers;
         public $categories_idcategories;
+        public $category_name;
+
 
         public function imageGenerateName(){
             return bin2hex(random_bytes(60)) . ".jpg";

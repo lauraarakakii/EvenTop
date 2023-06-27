@@ -105,6 +105,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: 0 -15px;
+    justify-content: center;
   }
   
   .event-card {
@@ -284,10 +285,13 @@
   }
   
   .event-image-container {
-    height: 400px;
+    height: 300px;
+    width: 100%;
     min-width: 200px;
     background-position: center;
     background-size: cover;
+    margin-left: 150px;
+    margin-top: 170px;
   }
   
   .page-title:after {
@@ -368,7 +372,7 @@
   }
   
   .table-event-title {
-    color: #FFF;
+    color: #000;
     font-weight: bold;
     transition: .5s;
   }

@@ -53,7 +53,7 @@ $userData = $userDAO->verifyToken(false);
                 <i class="fas fa-bars"></i>
             </button>
 
-            <form action="" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
+            <form action="<?= $BASE_URL ?>search.php" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
                 <div class="d-flex">
                     <input type="text" name="q" id="search" class="form-control mr-2" type="search"
                         placeholder="Pesquise Eventos" aria-label="Search">

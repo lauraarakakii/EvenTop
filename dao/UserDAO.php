@@ -221,10 +221,10 @@ class UserDAO implements UserDAOInterface
 
     }
 
-    public function findById($id)
+    public function findById($idusers)
     {
 
-        if ($id != "") {
+        if ($idusers != "") {
 
             $stmt = $this->conn->prepare("SELECT * FROM users WHERE idusers = :idusers");
 
