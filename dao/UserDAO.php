@@ -34,6 +34,19 @@ class UserDAO implements UserDAOInterface
 
     }
 
+    public function getUserRegistrations($users_idusers) {
+        $sql = "SELECT events.* FROM events
+                INNER JOIN registrations ON events.idevents = registrations.events_idevents
+                WHERE registrations.users_idusers = :users_idusers";
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":users_idusers", $users_idusers);
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+    
+
     public function create(User $user, $authUser = false)
     {
 

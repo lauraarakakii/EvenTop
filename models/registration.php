@@ -14,6 +14,8 @@ interface RegistrationDAOInterface {
 
     public function registerUser($event_idevents, $users_idusers);
 
+    public function getEventRegistrations($event_idevents);
+
 }
 
 

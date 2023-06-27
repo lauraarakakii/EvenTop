@@ -49,7 +49,7 @@ class EventDAO implements EventDAOInterface
 
     public function getRegistrations($eventId) {
 
-        $sql = "SELECT * FROM registration WHERE events_idevents = :eventId";
+        $sql = "SELECT * FROM registrations WHERE events_idevents = :eventId";
     
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":eventId", $eventId);

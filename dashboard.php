@@ -4,16 +4,16 @@ require_once("templates/header.php");
 require_once("models/user.php");
 require_once("dao/UserDAO.php");
 require_once("dao/EventDAO.php");
-
+require_once("dao/RegistrationDAO.php");
 
 $user = new User();
 $userDAO = new UserDAO($conn, $BASE_URL);
 $eventDAO = new EventDAO($conn, $BASE_URL);
+$registrationDAO = new RegistrationDAO($conn, $BASE_URL);
 
 $userData = $userDAO->verifyToken(true);
 
 $userEvents = $eventDAO->getEventsByUserId($userData->idusers);
-
 
 ?>
 
@@ -32,17 +32,23 @@ $userEvents = $eventDAO->getEventsByUserId($userData->idusers);
                 <th scope="col">#</th>
                 <th scope="col">Título</th>
                 <th scope="col">Nota</th>
+                <th scope="col">Inscritos</th>
                 <th scope="col" class="actions-column">Ações</th>
             </thead>
             <tbody>
                 <?php foreach ($userEvents as $event): ?>
+                    <?php
+                    $registrations = $registrationDAO->getEventRegistrations($event->idevents);
+                    $numRegistrations = count($registrations);
+                    ?>
                     <tr>
-                        <td scope="row">
-                            <?= $event->idevents ?>
+                        <td scope="row"><?= $event->idevents ?></td>
+                        <td>
+                            <a href="<?= $BASE_URL ?>event.php?idevents=<?= $event->idevents ?>"
+                                class="table-event-title"><?= $event->title ?></a>
                         </td>
-                        <td><a href="<?= $BASE_URL ?>event.php?idevents=<?= $event->idevents ?>"
-                                class="table-event-title"><?= $event->title ?></a></td>
                         <td><i class="fas fa-star"></i> <?= $event->rating ?></td>
+                        <td><?= $numRegistrations ?></td>
                         <td class="actions-column">
                             <a href="<?= $BASE_URL ?>editevent.php?idevents=<?= $event->idevents ?>" class="edit-btn">
                                 <i class="far fa-edit"> Editar</i>
@@ -54,6 +60,10 @@ $userEvents = $eventDAO->getEventsByUserId($userData->idusers);
                                     <i class="fas fa-times"></i> Deletar
                                 </button>
                             </form>
+                            <a href="<?= $BASE_URL ?>generate_report.php?idevents=<?= $event->idevents ?>"
+                                class="generate-report-btn">
+                                <i class="far fa-file-alt"> Gerar Relatório</i>
+                            </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

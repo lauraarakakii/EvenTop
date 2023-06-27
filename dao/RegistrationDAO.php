@@ -40,6 +40,19 @@ class RegistrationDAO implements RegistrationDAOInterface {
 
         $stmt->execute();
     }
+
+    public function getEventRegistrations($eventId) {
+        $sql = "SELECT registrations.*, users.name AS user_name, users.email AS user_email FROM registrations
+                INNER JOIN users ON registrations.users_idusers = users.idusers
+                WHERE registrations.events_idevents = :eventId";
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":eventId", $eventId);
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+    
 }
 
 ?>

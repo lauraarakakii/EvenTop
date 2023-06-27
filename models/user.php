@@ -29,6 +29,7 @@
 
     interface UserDAOInterface {
         public function buildUser($data);
+        public function getUserRegistrations($idusers);
         public function create(User $user, $authUser = false);
         public function update(User $user, $redirect = false);
         public function verifyToken($protected = false);
