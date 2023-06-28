@@ -18,10 +18,10 @@
                 <a href="<?= $BASE_URL ?>newevent.php">Adicionar Evento</a>
             </li>
             <li>
-                <a href="#">Avaliar Evento</a>
+                <a href="<?= $BASE_URL ?>my_events.php?idusers=<?= $userData->idusers ?>">Meus Eventos</a>
             </li>
             <li>
-                <a href="#">Entrar / Cadastrar</a>
+                <a href="<?= $BASE_URL ?>authetication.php">Entrar / Cadastrar</a>
             </li>
         </ul>
     </div>
