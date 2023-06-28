@@ -72,7 +72,10 @@ $userData = $userDAO->verifyToken(false);
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= $BASE_URL ?>dashboard.php" class="nav-link">Meus Eventos</a>
+                            <a href="<?= $BASE_URL ?>event_list.php" class="nav-link">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $BASE_URL ?>dashboard.php" class="nav-link">Admin Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= $BASE_URL ?>editprofile.php" class="nav-link bold">

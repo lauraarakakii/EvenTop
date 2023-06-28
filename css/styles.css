@@ -110,7 +110,6 @@
   
   .event-card {
     background-color: #1A1A1A;
-    width: 35%;
     margin-bottom: 30px;
     margin-left: 1%;
     margin-right: 1%;
@@ -160,6 +159,83 @@
     width: 100%;
     font-weight: bold;
   }
+
+  /* Mini menu categorias */ 
+  #base-menu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  #category-menu {
+    background-color: #F5C518;
+    color: black;
+    padding: 10px;
+    width: 950px;
+  }
+  
+  #category-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #category-menu ul li {
+    margin-right: 10px;
+  }
+  
+  #category-menu ul li a {
+    color: black;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+    font-size: 23px;
+  }
+  
+  #category-menu ul li a:hover {
+    background-color: #333;
+    color: #F5C518;
+  }
+
+  /* Payment */
+  .btn-success {
+    background-color: #28a745; /* green */
+    border-color: #28a745;
+    color: #ffffff; /* white */
+}
+
+.btn-success:hover {
+    background-color: #218838; /* darker green */
+    border-color: #1e7e34;
+    color: #ffffff; /* white */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* red */
+    border-color: #dc3545;
+    color: #ffffff; /* white */
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* darker red */
+    border-color: #bd2130;
+    color: #ffffff; /* white */
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between; /* Adiciona espaço igual entre os itens */
+  align-items: center; /* Alinha os itens verticalmente no centro */
+  flex-wrap: wrap; /* Permite que os itens se quebrem em várias linhas, se necessário */
+}
+
+.btn-success, .btn-danger {
+  margin: 0 5px; /* Adiciona margem para separar os botões */
+}
+
+  
   
   /* Login / Register */
   #auth-row {
@@ -228,7 +304,7 @@
   }
   
   .edit-profile-page .card-btn,
-  #add-event-container .card-btn,
+  .add-event-container .card-btn,
   #review-form .card-btn,
   #edit-event-form .card-btn {
     width: auto;
@@ -256,6 +332,10 @@
   .about-container {
     padding-top: 20px;
   }
+
+  .teste{
+    width: 100% !important;
+  }
   
   .about-container {
     text-align: center;
@@ -264,15 +344,28 @@
   }
   
   .added-events-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
     background-color: #333;
+    gap: 40px;
+
+    .created-events, .subscribe-events{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    h3{
+      text-align: center;
+    }
+
   }
   
   .added-events-container .events-container {
     padding: 20px;
   }
   
-  .added-events-container .event-card {
-    width: 31%;
+  .event-card {
+    width: 600px;
   }
   
   /* New event */
@@ -292,6 +385,17 @@
     background-size: cover;
     margin-left: 150px;
     margin-top: 170px;
+  }
+  .page-title-profile {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+    height: 60px;
+    .name{
+      width: auto;
+      border-bottom: solid 2px  #F5C518;
+    }
   }
   
   .page-title:after {
@@ -355,12 +459,30 @@
   }
   
   /* Dashboard */
-  #add-event-container {
+  .add-event-container {
     text-align: right;
   }
+
+  .add-event-button-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .add-event-button{
+    width: 30%;
+  }
+
   
   #events-dashboard .table {
-    color: #FFF;
+    color: #ffffff;
+    width: 699px;
+  }
+
+  .container-table{
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   
   #events-dashboard .table th {
@@ -382,8 +504,11 @@
   }
   
   .actions-column {
-    max-width: 75px;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
   
   .actions-column form {
@@ -573,3 +698,10 @@
     }
   
   }
+
+  thead, tbody, tfoot, tr, td, th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    text-align: center;
+}

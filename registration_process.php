@@ -18,8 +18,6 @@ $message = new Message($BASE_URL);
 $type = filter_input(INPUT_POST, "type");
 $userData = $userDAO->verifyToken();
 
-
-
 // Verifique se o tipo de requisição é para criar uma nova inscrição
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["type"]) && $_POST["type"] === "create") {
     // Verifique se o usuário está logado

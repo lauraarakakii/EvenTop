@@ -20,13 +20,16 @@ $userEvents = $eventDAO->getEventsByUserId($userData->idusers);
 <div id="main-container" class="container-fluid">
     <h2 class="section-title">Dashboard</h2>
     <p class="section-description">Adicione ou atualize as informações dos eventos que você adicionou</p>
-    <div class="col-md-12" id="add-event-container">
-        <a href="<?= $_BASE_URL ?>newevent.php" class="btn card-btn">
-            <i class="fas fa-plus"></i> Adicionar evento
-        </a>
+    <div class="add-event-button-container">
+        <div class="add-event-button">
+            <a href="<?= $_BASE_URL ?>newevent.php" class="btn card-btn">
+                <i class="fas fa-plus"></i> Adicionar evento
+            </a>
+        </div>
+       
     </div>
     <br>
-    <div class="col-md-12" id="events-dashboard">
+    <div class="container-table" id="events-dashboard">
         <table class="table">
             <thead>
                 <th scope="col">#</th>
